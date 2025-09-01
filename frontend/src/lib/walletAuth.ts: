@@ -1,0 +1,17 @@
+import api from "./api";
+import { signMessage } from "wagmi/actions"; // or use provider.request eth_personalSign
+
+export async function signInWithWallet(address: string, signer: any) {
+  // 1) fetch nonce from server (optionally). For demo we generate client-side nonce.
+  const nonce = `Sign to authenticate: ${Date.now()}-${Math.random().toString(36).slice(2,8)}`;
+  // 2) request signature via injected wallet
+  // If using wagmi's signMessage:
+  const signature = await signMessage({ message: nonce });
+  // 3) call backend
+  const res = await api.post("/auth/signin", {
+    wallet: address,
+    signature,
+    nonce
+  });
+  return res.data.token;
+}
