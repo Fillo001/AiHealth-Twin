@@ -1,0 +1,6 @@
+GEMINI_API_KEY=your_gemini_key_here
+JWT_SECRET=dev_secret_change_me
+IPFS_ENDPOINT=https://api.web3.storage
+IPFS_TOKEN=your_web3_storage_token
+# Optional: model prompt / other config
+GEMINI_MODEL=text-bison-001
